@@ -7,7 +7,7 @@ const isAuthenticated = process.env.NODE_ENV === "development";
 
 export default function middleware(req: NextRequest) {
   if (!isAuthenticated && protectedRoutes.includes(req.nextUrl.pathname)) {
-    const absoluteURL = new URL("/signin", req.nextUrl.origin);
+    const absoluteURL = new URL("/", req.nextUrl.origin);
     return NextResponse.redirect(absoluteURL);
   }
   return NextResponse.next();
